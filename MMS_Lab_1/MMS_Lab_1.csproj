@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{566B43D5-0D70-4900-B797-458E76CC31FA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MMS_Lab_1</RootNamespace>
+    <AssemblyName>MMS_Lab_1</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="INIFileParser, Version=2.4.0.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\packages\ini-parser.3.4.0\lib\net20\INIFileParser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\IController.cs" />
+    <Compile Include="ConvolutionMatrix.cs" />
+    <Compile Include="CustomStack.cs" />
+    <Compile Include="frmChooseDownsampledImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChooseDownsampledImage.Designer.cs">
+      <DependentUpon>frmChooseDownsampledImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEdgeDetectFactor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEdgeDetectFactor.Designer.cs">
+      <DependentUpon>frmEdgeDetectFactor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHistogramAverages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHistogramAverages.Designer.cs">
+      <DependentUpon>frmHistogramAverages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmColors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmColors.Designer.cs">
+      <DependentUpon>frmColors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTimeWarp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTimeWarp.Designer.cs">
+      <DependentUpon>frmTimeWarp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Histogram.cs" />
+    <Compile Include="IUndoRedo.cs" />
+    <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\IModel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShannonFano.cs" />
+    <Compile Include="Views\AllChannelsView.cs" />
+    <Compile Include="Views\ImageOnlyView.cs" />
+    <Compile Include="Views\IChannelView.cs" />
+    <Compile Include="Views\IView.cs" />
+    <EmbeddedResource Include="frmChooseDownsampledImage.resx">
+      <DependentUpon>frmChooseDownsampledImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEdgeDetectFactor.resx">
+      <DependentUpon>frmEdgeDetectFactor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHistogramAverages.resx">
+      <DependentUpon>frmHistogramAverages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmColors.resx">
+      <DependentUpon>frmColors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTimeWarp.resx">
+      <DependentUpon>frmTimeWarp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
