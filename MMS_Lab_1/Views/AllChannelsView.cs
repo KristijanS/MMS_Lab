@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace MMS_Lab_1.Views
 {
-    public class AllChannelsView : IView, IChannelView
+    public class AllChannelsView : IImageView, IChannelView
     {
         private TableLayoutPanel channelsPanel;
         private PictureBox image;
@@ -53,10 +53,10 @@ namespace MMS_Lab_1.Views
             image.Parent = channelsPanel;
 
             Rectangle rect = Screen.PrimaryScreen.Bounds;
-            
+
             Rectangle newSize = new Rectangle();
 
-            if(rect.Width < bmp.Width * 2)
+            if (rect.Width < bmp.Width * 2)
             {
                 newSize.Width = rect.Width / 2;
             }
@@ -64,7 +64,7 @@ namespace MMS_Lab_1.Views
             {
                 newSize.Width = bmp.Width;
             }
-            if(rect.Height < bmp.Height * 2)
+            if (rect.Height < bmp.Height * 2)
             {
                 newSize.Height = rect.Height / 2;
             }
@@ -82,7 +82,7 @@ namespace MMS_Lab_1.Views
             {
                 image.Image = new Bitmap(bmp, size);
             }
-            if(channelsPanel.InvokeRequired)
+            if (channelsPanel.InvokeRequired)
             {
                 channelsPanel.Invoke(new Action(() => { channelsPanel.AutoSize = true; channelsPanel.Dock = DockStyle.Fill; }));
             }
@@ -91,7 +91,7 @@ namespace MMS_Lab_1.Views
                 channelsPanel.AutoSize = true;
                 channelsPanel.Dock = DockStyle.Fill;
             }
-            if(parent.InvokeRequired)
+            if (parent.InvokeRequired)
             {
                 parent.Invoke(new Action(() => { parent.AutoSize = true; parent.FormBorderStyle = FormBorderStyle.FixedSingle; }));
             }

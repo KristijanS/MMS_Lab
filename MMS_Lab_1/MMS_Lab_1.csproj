@@ -55,8 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
-    <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\AudioController.cs" />
+    <Compile Include="Controllers\IAudioController.cs" />
     <Compile Include="Controllers\IController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
+    <Compile Include="Controllers\IImageController.cs" />
     <Compile Include="ConvolutionMatrix.cs" />
     <Compile Include="CustomStack.cs" />
     <Compile Include="frmChooseDownsampledImage.cs">
@@ -97,14 +100,18 @@
     </Compile>
     <Compile Include="Histogram.cs" />
     <Compile Include="IUndoRedo.cs" />
-    <Compile Include="Models\Model.cs" />
-    <Compile Include="Models\IModel.cs" />
+    <Compile Include="Models\AudioModel.cs" />
+    <Compile Include="Models\IAudioModel.cs" />
+    <Compile Include="Models\ImageModel.cs" />
+    <Compile Include="Models\IImageModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShannonFano.cs" />
     <Compile Include="Views\AllChannelsView.cs" />
+    <Compile Include="Views\AudioView.cs" />
     <Compile Include="Views\ImageOnlyView.cs" />
     <Compile Include="Views\IChannelView.cs" />
+    <Compile Include="Views\IImageView.cs" />
     <Compile Include="Views\IView.cs" />
     <EmbeddedResource Include="frmChooseDownsampledImage.resx">
       <DependentUpon>frmChooseDownsampledImage.cs</DependentUpon>
@@ -132,6 +139,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -147,7 +155,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Button-Stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Play.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

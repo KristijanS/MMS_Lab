@@ -10,23 +10,22 @@ namespace MMS_Lab_1
 {
     public partial class frmMain : Form
     {
-        private IController _controller;
-        private IView _view;
+        public IController _controller;
+        public IView _view;
         private String currentImgPath;
         private bool imageOnlyView;
         private bool histogramView;
         private bool allConvolutionsView;
+        private bool audioView;
 
         public frmMain()
         {
             InitializeComponent();
-            /*var process = Process.GetCurrentProcess();
-            process.ProcessorAffinity = new IntPtr(0x000F);*/
-            _controller = new Controller();
+            _controller = new ImageController();
             _view = new ImageOnlyView();
             _view.SetParentForm(this);
-            _controller.AttachView(_view);
-            _controller.SetUnsafeMode(true);
+            ((ImageController)_controller).AttachView((IImageView)_view);
+            ((ImageController)_controller).SetUnsafeMode(true);
             imageOnlyView = true;
             this.imageOnlyToolStripMenuItem.Checked = true;
             this.allChannelsToolStripMenuItem.Checked = false;
@@ -37,18 +36,25 @@ namespace MMS_Lab_1
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (imageOnlyView || histogramView || allConvolutionsView)
             {
-                DialogResult res = MessageBox.Show("Do you want to save the file?", "Save image", MessageBoxButtons.YesNoCancel);
-                if (res == DialogResult.Yes)
+                if (((ImageController)_controller).GetImageFromModel() != null)
                 {
-                    SaveFileDialog sfd = new SaveFileDialog();
-                    sfd.Filter = "Image files(*.bmp; *.jpg; *.png)|*.bmp;*.jpg;*png|All files (*.*)|*.*";
-                    sfd.ShowDialog();
-                    _controller.Save(sfd.FileName);
-                    Application.Exit();
+                    DialogResult res = MessageBox.Show("Do you want to save the file?", "Save image", MessageBoxButtons.YesNoCancel);
+                    if (res == DialogResult.Yes)
+                    {
+                        SaveFileDialog sfd = new SaveFileDialog();
+                        sfd.Filter = "Image files(*.bmp; *.jpg; *.png)|*.bmp;*.jpg;*png|All files (*.*)|*.*";
+                        sfd.ShowDialog();
+                        ((ImageController)_controller).Save(sfd.FileName);
+                        Application.Exit();
+                    }
+                    if (res == DialogResult.No)
+                    {
+                        Application.Exit();
+                    }
                 }
-                if (res == DialogResult.No)
+                else
                 {
                     Application.Exit();
                 }
@@ -61,17 +67,35 @@ namespace MMS_Lab_1
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = "Image files(*.bmp; *.jpg; *.png)|*.bmp;*.jpg;*png|All files (*.*)|*.*";
                 sfd.ShowDialog();
-                _controller.Save(sfd.FileName);
+                ((ImageController)_controller).Save(sfd.FileName);
             }
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (audioView)
+            {
+                _controller = new ImageController();
+                _view.SetVisibility(false);
+                _view = new ImageOnlyView();
+                _view.SetParentForm(this);
+                _view.SetVisibility(true);
+                ((ImageController)_controller).AttachView((IImageView)_view);
+                ((ImageController)_controller).SetUnsafeMode(true);
+                imageOnlyView = true;
+                audioView = false;
+                EnableImageControls();
+                this.imageOnlyToolStripMenuItem.Checked = true;
+                this.allChannelsToolStripMenuItem.Checked = false;
+                this.allChannelsHistogramsToolStripMenuItem.Checked = false;
+                this.onToolStripMenuItem.Checked = true;
+                this.offToolStripMenuItem.Checked = false;
+            }
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Image files(*.bmp; *.jpg; *.png)|*.bmp;*.jpg;*png|All files (*.*)|*.*";
             DialogResult res = ofd.ShowDialog();
@@ -86,14 +110,18 @@ namespace MMS_Lab_1
             {
                 currentImgPath = ofd.FileName;
             }
-            Bitmap bmp = _controller.Load(currentImgPath);
+            else
+            {
+                return;
+            }
+            Bitmap bmp = ((ImageController)_controller).Load(currentImgPath);
             if (!histogramView)
             {
-                _controller.SetViewImage(bmp);
+                ((ImageController)_controller).SetViewImage(bmp);
             }
             else
             {
-                _controller.SetViewHistograms(bmp);
+                ((ImageController)_controller).SetViewHistograms(bmp);
             }
             //Invalidate();
         }
@@ -113,28 +141,28 @@ namespace MMS_Lab_1
             {
                 currentImgPath = ofd.FileName;
             }
-            
-            Bitmap bmp = _controller.LoadDownsampledImage(currentImgPath);
+
+            Bitmap bmp = ((ImageController)_controller).LoadDownsampledImage(currentImgPath);
             if (!histogramView)
             {
-                _controller.SetViewImage(bmp);
+                ((ImageController)_controller).SetViewImage(bmp);
             }
             else
             {
-                _controller.SetViewHistograms(bmp);
+                ((ImageController)_controller).SetViewHistograms(bmp);
             }
         }
 
         private void onToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _controller.SetUnsafeMode(true);
+            ((ImageController)_controller).SetUnsafeMode(true);
             this.onToolStripMenuItem.Checked = true;
             this.offToolStripMenuItem.Checked = false;
         }
 
         private void offToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _controller.SetUnsafeMode(false);
+            ((ImageController)_controller).SetUnsafeMode(false);
             this.onToolStripMenuItem.Checked = false;
             this.offToolStripMenuItem.Checked = true;
         }
@@ -146,15 +174,15 @@ namespace MMS_Lab_1
                 _view.SetVisibility(false);
                 _view = new ImageOnlyView();
                 _view.SetParentForm(this);
-                _controller.AttachView(_view);
+                ((ImageController)_controller).AttachView((IImageView)_view);
                 imageOnlyView = true;
                 histogramView = false;
                 allConvolutionsView = false;
                 Bitmap bmp;
-                if ((bmp = _controller.GetImageFromModel()) != null)
+                if ((bmp = ((ImageController)_controller).GetImageFromModel()) != null)
                 {
 
-                    _controller.SetViewImage(bmp);
+                    ((ImageController)_controller).SetViewImage(bmp);
 
                 }
                 this.imageOnlyToolStripMenuItem.Checked = true;
@@ -171,14 +199,14 @@ namespace MMS_Lab_1
                 _view.SetVisibility(false);
                 _view = new AllChannelsView();
                 _view.SetParentForm(this);
-                _controller.AttachView(_view);
+                ((ImageController)_controller).AttachView((IImageView)_view);
                 imageOnlyView = false;
                 histogramView = false;
                 allConvolutionsView = false;
                 Bitmap bmp;
-                if ((bmp = _controller.GetImageFromModel()) != null)
+                if ((bmp = ((ImageController)_controller).GetImageFromModel()) != null)
                 {
-                    _controller.SetViewImage(bmp);
+                    ((ImageController)_controller).SetViewImage(bmp);
 
                 }
                 this.imageOnlyToolStripMenuItem.Checked = false;
@@ -190,17 +218,17 @@ namespace MMS_Lab_1
 
         private void invertToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 Thread t = new Thread(() =>
                 {
                     if (!histogramView)
                     {
-                        _controller.SetViewImage(_controller.InvertImage());
+                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).InvertImage());
                     }
                     else
                     {
-                        _controller.SetViewHistograms(_controller.InvertImage());
+                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).InvertImage());
                     }
                 });
                 t.Start();
@@ -209,7 +237,7 @@ namespace MMS_Lab_1
 
         private void colorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 int r = 0, g = 0, b = 0;
                 frmColors form = new frmColors();
@@ -224,11 +252,11 @@ namespace MMS_Lab_1
                 {
                     if (!histogramView)
                     {
-                        _controller.SetViewImage(_controller.ColorsFilter(r, g, b));
+                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).ColorsFilter(r, g, b));
                     }
                     else
                     {
-                        _controller.SetViewHistograms(_controller.ColorsFilter(r, g, b));
+                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).ColorsFilter(r, g, b));
                     }
 
                 });
@@ -238,17 +266,17 @@ namespace MMS_Lab_1
 
         private void x3ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 Thread t = new Thread(() =>
                 {
                     if (!histogramView)
                     {
-                        _controller.SetViewImage(_controller.MeanFilter3x3());
+                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter3x3());
                     }
                     else
                     {
-                        _controller.SetViewHistograms(_controller.MeanFilter3x3());
+                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter3x3());
                     }
 
                 });
@@ -258,17 +286,17 @@ namespace MMS_Lab_1
 
         private void x5ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 Thread t = new Thread(() =>
                 {
                     if (!histogramView)
                     {
-                        _controller.SetViewImage(_controller.MeanFilter5x5());
+                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter5x5());
                     }
                     else
                     {
-                        _controller.SetViewHistograms(_controller.MeanFilter5x5());
+                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter5x5());
                     }
                 });
                 t.Start();
@@ -277,17 +305,17 @@ namespace MMS_Lab_1
 
         private void x7ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 Thread t = new Thread(() =>
                 {
                     if (!histogramView)
                     {
-                        _controller.SetViewImage(_controller.MeanFilter7x7());
+                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter7x7());
                     }
                     else
                     {
-                        _controller.SetViewHistograms(_controller.MeanFilter7x7());
+                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter7x7());
                     }
 
                 });
@@ -302,20 +330,19 @@ namespace MMS_Lab_1
                 _view.SetVisibility(false);
                 _view = new AllChannelsView();
                 _view.SetParentForm(this);
-                _controller.AttachView(_view);
+                ((ImageController)_controller).AttachView((IImageView)_view);
                 imageOnlyView = false;
                 histogramView = false;
                 allConvolutionsView = true;
 
                 Bitmap bmp;
-                if ((bmp = _controller.GetImageFromModel()) != null)
+                if ((bmp = ((ImageController)_controller).GetImageFromModel()) != null)
                 {
 
-                    _controller.SetViewAllConvolutionsMean(bmp);
+                    ((ImageController)_controller).SetViewAllConvolutionsMean(bmp);
 
                 }
                 this.imageOnlyToolStripMenuItem.Checked = false;
-                //this.allChannelsToolStripMenuItem.Checked = true;
                 this.allChannelsHistogramsToolStripMenuItem.Checked = false;
                 this.downsampleToolStripMenuItem.Checked = false;
             }
@@ -328,15 +355,15 @@ namespace MMS_Lab_1
                 _view.SetVisibility(false);
                 _view = new AllChannelsView();
                 _view.SetParentForm(this);
-                _controller.AttachView(_view);
+                ((ImageController)_controller).AttachView((IImageView)_view);
                 imageOnlyView = false;
                 histogramView = true;
                 allConvolutionsView = false;
                 Bitmap bmp;
-                if ((bmp = _controller.GetImageFromModel()) != null)
+                if ((bmp = ((ImageController)_controller).GetImageFromModel()) != null)
                 {
 
-                    _controller.SetViewHistograms(bmp);
+                    ((ImageController)_controller).SetViewHistograms(bmp);
 
                 }
                 this.imageOnlyToolStripMenuItem.Checked = false;
@@ -348,7 +375,7 @@ namespace MMS_Lab_1
 
         private void edgeDetectHomogenityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 byte nThreshold = 0;
                 frmEdgeDetectFactor form = new frmEdgeDetectFactor();
@@ -361,11 +388,11 @@ namespace MMS_Lab_1
                 {
                     if (!histogramView)
                     {
-                        _controller.SetViewImage(_controller.EdgeDetectHomogenity(nThreshold));
+                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).EdgeDetectHomogenity(nThreshold));
                     }
                     else
                     {
-                        _controller.SetViewHistograms(_controller.EdgeDetectHomogenity(nThreshold));
+                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).EdgeDetectHomogenity(nThreshold));
                     }
 
                 });
@@ -375,7 +402,7 @@ namespace MMS_Lab_1
 
         private void timeWarpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 byte factor = 0;
                 bool smoothing = true;
@@ -390,11 +417,11 @@ namespace MMS_Lab_1
                 {
                     if (!histogramView)
                     {
-                        _controller.SetViewImage(_controller.TimeWarp(factor, smoothing));
+                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).TimeWarp(factor, smoothing));
                     }
                     else
                     {
-                        _controller.SetViewHistograms(_controller.TimeWarp(factor, smoothing));
+                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).TimeWarp(factor, smoothing));
                     }
 
                 });
@@ -404,28 +431,28 @@ namespace MMS_Lab_1
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 Thread t = new Thread(() =>
                 {
                     if (allConvolutionsView)
                     {
-                        ((Controller)_controller).Undo();
-                        ((Controller)_controller).Undo();
-                        ((Controller)_controller).Undo();
-                        ((Controller)_controller).Undo();
-                        _controller.SetViewAllConvolutionsMean(_controller.GetImageFromModel());
+                        ((ImageController)((ImageController)_controller)).Undo();
+                        ((ImageController)((ImageController)_controller)).Undo();
+                        ((ImageController)((ImageController)_controller)).Undo();
+                        ((ImageController)((ImageController)_controller)).Undo();
+                        ((ImageController)_controller).SetViewAllConvolutionsMean(((ImageController)_controller).GetImageFromModel());
                     }
                     else
                     {
-                        ((Controller)_controller).Undo();
+                        ((ImageController)((ImageController)_controller)).Undo();
                         if (!histogramView)
                         {
-                            _controller.SetViewImage(_controller.GetImageFromModel());
+                            ((ImageController)_controller).SetViewImage(((ImageController)_controller).GetImageFromModel());
                         }
                         else
                         {
-                            _controller.SetViewHistograms(_controller.GetImageFromModel());
+                            ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).GetImageFromModel());
                         }
                     }
                 });
@@ -435,28 +462,28 @@ namespace MMS_Lab_1
 
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 Thread t = new Thread(() =>
                 {
                     if (allConvolutionsView)
                     {
-                        ((Controller)_controller).Redo();
-                        ((Controller)_controller).Redo();
-                        ((Controller)_controller).Redo();
-                        ((Controller)_controller).Redo();
-                        _controller.SetViewAllConvolutionsMean(_controller.GetImageFromModel());
+                        ((ImageController)((ImageController)_controller)).Redo();
+                        ((ImageController)((ImageController)_controller)).Redo();
+                        ((ImageController)((ImageController)_controller)).Redo();
+                        ((ImageController)((ImageController)_controller)).Redo();
+                        ((ImageController)_controller).SetViewAllConvolutionsMean(((ImageController)_controller).GetImageFromModel());
                     }
                     else
                     {
-                        ((Controller)_controller).Redo();
+                        ((ImageController)((ImageController)_controller)).Redo();
                         if (!histogramView)
                         {
-                            _controller.SetViewImage(_controller.GetImageFromModel());
+                            ((ImageController)_controller).SetViewImage(((ImageController)_controller).GetImageFromModel());
                         }
                         else
                         {
-                            _controller.SetViewHistograms(_controller.GetImageFromModel());
+                            ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).GetImageFromModel());
                         }
                     }
 
@@ -467,7 +494,7 @@ namespace MMS_Lab_1
 
         private void histogramAveragesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 int grNo = 1;
                 frmHistogramAverages form = new frmHistogramAverages();
@@ -480,11 +507,11 @@ namespace MMS_Lab_1
                 {
                     if (!histogramView)
                     {
-                        _controller.SetViewImage(_controller.HistogramAverages(grNo));
+                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).HistogramAverages(grNo));
                     }
                     else
                     {
-                        _controller.SetViewHistograms(_controller.HistogramAverages(grNo));
+                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).HistogramAverages(grNo));
                     }
                 });
                 t.Start();
@@ -493,18 +520,18 @@ namespace MMS_Lab_1
 
         private void downsampleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_controller.GetImageFromModel() != null)
+            if (((ImageController)_controller).GetImageFromModel() != null)
             {
                 if (imageOnlyView || histogramView)
                 {
                     _view.SetVisibility(false);
                     _view = new AllChannelsView();
                     _view.SetParentForm(this);
-                    _controller.AttachView(_view);
+                    ((ImageController)_controller).AttachView((IImageView)_view);
                     imageOnlyView = false;
                     histogramView = false;
                     allConvolutionsView = false;
-                    _controller.SetViewDownsampledImage(_controller.GetImageFromModel());
+                    ((ImageController)_controller).SetViewDownsampledImage(((ImageController)_controller).GetImageFromModel());
                     this.imageOnlyToolStripMenuItem.Checked = false;
                     this.allChannelsHistogramsToolStripMenuItem.Checked = false;
                     this.allChannelsToolStripMenuItem.Checked = false;
@@ -520,11 +547,87 @@ namespace MMS_Lab_1
 
                 if (res == DialogResult.OK)
                 {
-                    _controller.SaveDownsampledImage(sfd.FileName, (int)form.Choice);
+                    ((ImageController)_controller).SaveDownsampledImage(sfd.FileName, (int)form.Choice);
                 }
             }
         }
 
+        private void loadAudioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _controller = new AudioController();
+            _view.SetVisibility(false);
+            _view = new AudioView();
+            imageOnlyView = histogramView = allConvolutionsView = false;
+            audioView = true;
+            DisableImageControls();
+            _view.SetParentForm(this);
+            _view.SetVisibility(true);
+            ((AudioController)_controller).AttachView(_view);
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "WAV Files(*.wav)|*.wav";
 
+            DialogResult res = ofd.ShowDialog();
+
+            if (res == DialogResult.OK)
+            {
+                ((AudioController)_controller).Load(ofd.FileName);
+            }
+        }
+
+        private void DisableImageControls()
+        {
+            this.x7ToolStripMenuItem.Enabled = false;
+            this.x5ToolStripMenuItem.Enabled = false;
+            this.x3ToolStripMenuItem.Enabled = false;
+            this.unsafeOperationToolStripMenuItem.Enabled = false;
+            this.allChannelsHistogramsToolStripMenuItem.Enabled = false;
+            this.allChannelsToolStripMenuItem.Enabled = false;
+            this.allToolStripMenuItem.Enabled = false;
+            this.channelsToolStripMenuItem.Enabled = false;
+            this.colorToolStripMenuItem.Enabled = false;
+            this.downsampleToolStripMenuItem.Enabled = false;
+            this.edgeDetectHomogenityToolStripMenuItem.Enabled = false;
+            this.editToolStripMenuItem.Enabled = false;
+            this.filtersToolStripMenuItem.Enabled = false;
+            this.histogramAveragesToolStripMenuItem.Enabled = false;
+            this.imageOnlyToolStripMenuItem.Enabled = false;
+            this.invertToolStripMenuItem.Enabled = false;
+            this.meanRemovalToolStripMenuItem.Enabled = false;
+            this.offToolStripMenuItem.Enabled = false;
+            this.onToolStripMenuItem.Enabled = false;
+            this.optionsToolStripMenuItem.Enabled = false;
+            this.redoToolStripMenuItem.Enabled = false;
+            this.saveToolStripMenuItem.Enabled = false;
+            this.timeWarpToolStripMenuItem.Enabled = false;
+            this.undoToolStripMenuItem.Enabled = false;
+        }
+
+        private void EnableImageControls()
+        {
+            this.x7ToolStripMenuItem.Enabled = true;
+            this.x5ToolStripMenuItem.Enabled = true;
+            this.x3ToolStripMenuItem.Enabled = true;
+            this.unsafeOperationToolStripMenuItem.Enabled = true;
+            this.allChannelsHistogramsToolStripMenuItem.Enabled = true;
+            this.allChannelsToolStripMenuItem.Enabled = true;
+            this.allToolStripMenuItem.Enabled = true;
+            this.channelsToolStripMenuItem.Enabled = true;
+            this.colorToolStripMenuItem.Enabled = true;
+            this.downsampleToolStripMenuItem.Enabled = true;
+            this.edgeDetectHomogenityToolStripMenuItem.Enabled = true;
+            this.editToolStripMenuItem.Enabled = true;
+            this.filtersToolStripMenuItem.Enabled = true;
+            this.histogramAveragesToolStripMenuItem.Enabled = true;
+            this.imageOnlyToolStripMenuItem.Enabled = true;
+            this.invertToolStripMenuItem.Enabled = true;
+            this.meanRemovalToolStripMenuItem.Enabled = true;
+            this.offToolStripMenuItem.Enabled = true;
+            this.onToolStripMenuItem.Enabled = true;
+            this.optionsToolStripMenuItem.Enabled = true;
+            this.redoToolStripMenuItem.Enabled = true;
+            this.saveToolStripMenuItem.Enabled = true;
+            this.timeWarpToolStripMenuItem.Enabled = true;
+            this.undoToolStripMenuItem.Enabled = true;
+        }
     }
 }

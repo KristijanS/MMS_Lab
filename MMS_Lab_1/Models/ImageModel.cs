@@ -7,7 +7,7 @@ using System.IO;
 
 namespace MMS_Lab_1.Models
 {
-    public class Model : IModel, IUndoRedo
+    public class ImageModel : IImageModel, IUndoRedo
     {
         Bitmap image;
         Bitmap channelX;
@@ -29,7 +29,7 @@ namespace MMS_Lab_1.Models
 
         byte downsamplingMethod = 0;
 
-        public Model()
+        public ImageModel()
         {
             histogramX = new SortedDictionary<int, int>();
             histogramY = new SortedDictionary<int, int>();

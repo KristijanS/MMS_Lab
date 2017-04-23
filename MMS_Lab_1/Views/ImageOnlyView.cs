@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace MMS_Lab_1.Views
 {
-    public class ImageOnlyView : IView
+    public class ImageOnlyView : IImageView
     {
         PictureBox image;
         Panel imagePanel;
@@ -31,9 +31,9 @@ namespace MMS_Lab_1.Views
             Rectangle screen = Screen.PrimaryScreen.Bounds;
             Size size = new Size(screen.Width, screen.Height);
 
-            
+
             image.Parent = imagePanel;
-            
+
             imagePanel.Dock = DockStyle.Fill;
             imagePanel.AutoSize = true;
             imagePanel.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
@@ -47,7 +47,7 @@ namespace MMS_Lab_1.Views
                 imagePanel.AutoScroll = true;
             }
 
-            if(image.InvokeRequired)
+            if (image.InvokeRequired)
             {
                 image.Invoke(new Action(() => image.Image = bmp));
             }
@@ -57,7 +57,7 @@ namespace MMS_Lab_1.Views
             }
             if (imagePanel.InvokeRequired)
             {
-                imagePanel.Invoke(new Action(() => imagePanel.Controls.Add(image) ));
+                imagePanel.Invoke(new Action(() => imagePanel.Controls.Add(image)));
             }
             else
             {
@@ -65,9 +65,9 @@ namespace MMS_Lab_1.Views
             }
 
             parent.AutoSize = true;
-            
+
             parent.MaximumSize = size;
-            
+
             if (parent.InvokeRequired)
             {
                 parent.Invoke(new Action(() => parent.Controls.Add(imagePanel)));

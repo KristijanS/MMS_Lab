@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace MMS_Lab_1.Models
 {
-    public interface IModel
+    public interface IImageModel
     {
         Bitmap LoadImage(String path);
         void SaveImage(String path);

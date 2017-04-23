@@ -6,20 +6,20 @@ using System.Threading;
 
 namespace MMS_Lab_1.Controllers
 {
-    public class Controller : IController, IUndoRedo
+    public class ImageController : IImageController, IUndoRedo
     {
-        private IView _view;
-        private IModel _model;
+        private IImageView _view;
+        private IImageModel _model;
         private bool modelUnsafeOperaion;
 
-        public Controller()
+        public ImageController()
         {
-            _model = new Model();
+            _model = new ImageModel();
         }
 
         public void AttachView(IView view)
         {
-            _view = view;
+            _view = (IImageView)view;
         }
 
         public void Save(string path)
@@ -120,12 +120,12 @@ namespace MMS_Lab_1.Controllers
 
         public void Undo()
         {
-            ((Model)_model).Undo();
+            ((ImageModel)_model).Undo();
         }
 
         public void Redo()
         {
-            ((Model)_model).Redo();
+            ((ImageModel)_model).Redo();
         }
 
         public Bitmap HistogramAverages(int grNo)

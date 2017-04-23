@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadCustomImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,7 @@
             this.unsafeOperationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.offToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadCustomImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,6 +79,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripMenuItem,
             this.loadCustomImageToolStripMenuItem,
+            this.loadAudioToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -90,6 +92,13 @@
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
+            // 
+            // loadCustomImageToolStripMenuItem
+            // 
+            this.loadCustomImageToolStripMenuItem.Name = "loadCustomImageToolStripMenuItem";
+            this.loadCustomImageToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.loadCustomImageToolStripMenuItem.Text = "Load Custom Image";
+            this.loadCustomImageToolStripMenuItem.Click += new System.EventHandler(this.loadCustomImageToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -286,12 +295,12 @@
             this.offToolStripMenuItem.Text = "Off";
             this.offToolStripMenuItem.Click += new System.EventHandler(this.offToolStripMenuItem_Click);
             // 
-            // loadCustomImageToolStripMenuItem
+            // loadAudioToolStripMenuItem
             // 
-            this.loadCustomImageToolStripMenuItem.Name = "loadCustomImageToolStripMenuItem";
-            this.loadCustomImageToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.loadCustomImageToolStripMenuItem.Text = "Load Custom Image";
-            this.loadCustomImageToolStripMenuItem.Click += new System.EventHandler(this.loadCustomImageToolStripMenuItem_Click);
+            this.loadAudioToolStripMenuItem.Name = "loadAudioToolStripMenuItem";
+            this.loadAudioToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.loadAudioToolStripMenuItem.Text = "Load Audio";
+            this.loadAudioToolStripMenuItem.Click += new System.EventHandler(this.loadAudioToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -343,6 +352,7 @@
         private System.Windows.Forms.ToolStripMenuItem histogramAveragesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downsampleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadCustomImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadAudioToolStripMenuItem;
     }
 }
 
