@@ -29,9 +29,9 @@ namespace MMS_Lab_1.Controllers
             _model.Stop();
         }
 
-        public void ApplyFilter()
+        public void ApplyFilter(int[] channelValues)
         {
-            _model.ApplyFilter();
+            _model.ApplyFilter(channelValues);
         }
 
         public void Load(string path)
@@ -39,9 +39,9 @@ namespace MMS_Lab_1.Controllers
             _model.Load(path);
         }
 
-        public void Save(string path)
+        public int GetNumberOfChannels()
         {
-            _model.Save(path);
+            return _model.GetNumberOfChannels();
         }
     }
 }

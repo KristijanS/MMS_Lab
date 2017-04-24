@@ -10,8 +10,8 @@ namespace MMS_Lab_1.Models
     {
         void Play();
         void Stop();
-        void ApplyFilter();
+        void ApplyFilter(int[] channelValues);
         void Load(String path);
-        void Save(String path);
+        int GetNumberOfChannels();
     }
 }

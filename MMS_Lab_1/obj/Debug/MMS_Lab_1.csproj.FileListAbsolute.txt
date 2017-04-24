@@ -46,3 +46,4 @@ D:\kris2\Documents\Visual Studio 2015\Projects\MMS_Lab_1\MMS_Lab\MMS_Lab_1\obj\D
 D:\kris2\Documents\Visual Studio 2015\Projects\MMS_Lab_1\MMS_Lab\MMS_Lab_1\obj\Debug\MMS_Lab_1.csproj.GenerateResource.Cache
 D:\kris2\Documents\Visual Studio 2015\Projects\MMS_Lab_1\MMS_Lab\MMS_Lab_1\obj\Debug\MMS_Lab_1.exe
 D:\kris2\Documents\Visual Studio 2015\Projects\MMS_Lab_1\MMS_Lab\MMS_Lab_1\obj\Debug\MMS_Lab_1.pdb
+D:\kris2\Documents\Visual Studio 2015\Projects\MMS_Lab_1\MMS_Lab\MMS_Lab_1\obj\Debug\MMS_Lab_1.frmAudioFilter.resources

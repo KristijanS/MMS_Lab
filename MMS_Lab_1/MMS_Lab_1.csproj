@@ -62,6 +62,12 @@
     <Compile Include="Controllers\IImageController.cs" />
     <Compile Include="ConvolutionMatrix.cs" />
     <Compile Include="CustomStack.cs" />
+    <Compile Include="frmAudioFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAudioFilter.Designer.cs">
+      <DependentUpon>frmAudioFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmChooseDownsampledImage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     <Compile Include="Views\IChannelView.cs" />
     <Compile Include="Views\IImageView.cs" />
     <Compile Include="Views\IView.cs" />
+    <EmbeddedResource Include="frmAudioFilter.resx">
+      <DependentUpon>frmAudioFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmChooseDownsampledImage.resx">
       <DependentUpon>frmChooseDownsampledImage.cs</DependentUpon>
     </EmbeddedResource>

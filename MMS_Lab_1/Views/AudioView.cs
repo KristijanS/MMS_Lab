@@ -85,7 +85,14 @@ namespace MMS_Lab_1.Views
 
         private void filterButton_Click(object sender, EventArgs e)
         {
-            ((IAudioController)((frmMain)parent)._controller).ApplyFilter();
+            filterButton.Text = "Processing...";
+
+            int channelNo = ((IAudioController)((frmMain)parent)._controller).GetNumberOfChannels();
+            frmAudioFilter form = new frmAudioFilter(channelNo);
+
+            DialogResult res = form.ShowDialog();
+            ((IAudioController)((frmMain)parent)._controller).ApplyFilter(form.channelValues);
+            filterButton.Text = "Apply filter.";
         }
     }
 }

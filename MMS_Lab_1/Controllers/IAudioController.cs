@@ -11,7 +11,7 @@ namespace MMS_Lab_1.Controllers
         void Play();
         void Stop();
         void Load(String path);
-        void Save(String path);
-        void ApplyFilter();
+        void ApplyFilter(int[] channelValues);
+        int GetNumberOfChannels();
     }
 }
