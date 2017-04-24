@@ -66,7 +66,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(73, 189);
+            this.numericUpDown1.Location = new System.Drawing.Point(73, 218);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             65536,
             0,
@@ -78,7 +78,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(73, 218);
+            this.numericUpDown2.Location = new System.Drawing.Point(73, 189);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             65536,
             0,
@@ -99,7 +99,7 @@
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(73, 68);
+            this.numericUpDown3.Location = new System.Drawing.Point(73, 159);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             65536,
             0,
@@ -120,7 +120,7 @@
             // 
             // numericUpDown4
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(73, 98);
+            this.numericUpDown4.Location = new System.Drawing.Point(73, 128);
             this.numericUpDown4.Maximum = new decimal(new int[] {
             65536,
             0,
@@ -141,7 +141,7 @@
             // 
             // numericUpDown5
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(73, 128);
+            this.numericUpDown5.Location = new System.Drawing.Point(73, 98);
             this.numericUpDown5.Maximum = new decimal(new int[] {
             65536,
             0,
@@ -162,7 +162,7 @@
             // 
             // numericUpDown6
             // 
-            this.numericUpDown6.Location = new System.Drawing.Point(73, 159);
+            this.numericUpDown6.Location = new System.Drawing.Point(73, 68);
             this.numericUpDown6.Maximum = new decimal(new int[] {
             65536,
             0,
@@ -183,7 +183,7 @@
             // 
             // numericUpDown7
             // 
-            this.numericUpDown7.Location = new System.Drawing.Point(73, 7);
+            this.numericUpDown7.Location = new System.Drawing.Point(73, 37);
             this.numericUpDown7.Maximum = new decimal(new int[] {
             65536,
             0,
@@ -204,7 +204,7 @@
             // 
             // numericUpDown8
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(73, 37);
+            this.numericUpDown8.Location = new System.Drawing.Point(73, 7);
             this.numericUpDown8.Maximum = new decimal(new int[] {
             65536,
             0,

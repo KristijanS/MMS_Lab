@@ -44,7 +44,6 @@ namespace MMS_Lab_1
                     }
                 }
             }
-            Array.Reverse(channelValues);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

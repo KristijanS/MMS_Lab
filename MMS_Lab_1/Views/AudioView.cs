@@ -24,8 +24,6 @@ namespace MMS_Lab_1.Views
             stopButton = new Button();
             filterButton = new Button();
 
-            panel.Dock = DockStyle.Fill;
-
             playButton.Click += playButton_Click;
             stopButton.Click += stopButton_Click;
             filterButton.Click += filterButton_Click;
@@ -38,19 +36,15 @@ namespace MMS_Lab_1.Views
 
             playButton.Width = playButton.Image.Width;
             playButton.Height = playButton.Image.Height;
-            playButton.Location = new Point(64, 25);
 
             stopButton.Width = stopButton.Image.Width;
             stopButton.Height = stopButton.Image.Height;
-            stopButton.Location = new Point(0, 25);
 
             filterButton.Width = 64;
             filterButton.Height = 64;
-            filterButton.Location = new Point(64 * 2, 25);
 
-            panel.Controls.Add(playButton, 1, 0);
-            panel.Controls.Add(stopButton, 0, 0);
-            panel.Controls.Add(filterButton, 2, 0);
+            panel.RowCount = 1;
+            panel.ColumnCount = 3;
         }
 
         public void SetVisibility(bool value)
@@ -70,6 +64,9 @@ namespace MMS_Lab_1.Views
             stopButton.Parent = panel;
             filterButton.Parent = panel;
             parent.Controls.Add(panel);
+            panel.Controls.Add(playButton, 1, 0);
+            panel.Controls.Add(stopButton, 0, 0);
+            panel.Controls.Add(filterButton, 2, 0);
             parent.AutoSize = true;
         }
 
