@@ -32,6 +32,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadCustomImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +58,7 @@
             this.unsafeOperationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.offToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorSimilarityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,6 +100,13 @@
             this.loadCustomImageToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.loadCustomImageToolStripMenuItem.Text = "Load Custom Image";
             this.loadCustomImageToolStripMenuItem.Click += new System.EventHandler(this.loadCustomImageToolStripMenuItem_Click);
+            // 
+            // loadAudioToolStripMenuItem
+            // 
+            this.loadAudioToolStripMenuItem.Name = "loadAudioToolStripMenuItem";
+            this.loadAudioToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.loadAudioToolStripMenuItem.Text = "Load Audio";
+            this.loadAudioToolStripMenuItem.Click += new System.EventHandler(this.loadAudioToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -146,7 +154,8 @@
             this.invertToolStripMenuItem,
             this.edgeDetectHomogenityToolStripMenuItem,
             this.timeWarpToolStripMenuItem,
-            this.histogramAveragesToolStripMenuItem});
+            this.histogramAveragesToolStripMenuItem,
+            this.colorSimilarityToolStripMenuItem});
             this.filtersToolStripMenuItem.Name = "filtersToolStripMenuItem";
             this.filtersToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.filtersToolStripMenuItem.Text = "Filters";
@@ -295,12 +304,12 @@
             this.offToolStripMenuItem.Text = "Off";
             this.offToolStripMenuItem.Click += new System.EventHandler(this.offToolStripMenuItem_Click);
             // 
-            // loadAudioToolStripMenuItem
+            // colorSimilarityToolStripMenuItem
             // 
-            this.loadAudioToolStripMenuItem.Name = "loadAudioToolStripMenuItem";
-            this.loadAudioToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.loadAudioToolStripMenuItem.Text = "Load Audio";
-            this.loadAudioToolStripMenuItem.Click += new System.EventHandler(this.loadAudioToolStripMenuItem_Click);
+            this.colorSimilarityToolStripMenuItem.Name = "colorSimilarityToolStripMenuItem";
+            this.colorSimilarityToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.colorSimilarityToolStripMenuItem.Text = "Color Similarity";
+            this.colorSimilarityToolStripMenuItem.Click += new System.EventHandler(this.colorSimilarityToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -353,6 +362,7 @@
         private System.Windows.Forms.ToolStripMenuItem downsampleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadCustomImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadAudioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem colorSimilarityToolStripMenuItem;
     }
 }
 

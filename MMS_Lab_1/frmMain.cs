@@ -600,6 +600,7 @@ namespace MMS_Lab_1
             this.saveToolStripMenuItem.Enabled = false;
             this.timeWarpToolStripMenuItem.Enabled = false;
             this.undoToolStripMenuItem.Enabled = false;
+            this.colorSimilarityToolStripMenuItem.Enabled = false;
         }
 
         private void EnableImageControls()
@@ -628,6 +629,49 @@ namespace MMS_Lab_1
             this.saveToolStripMenuItem.Enabled = true;
             this.timeWarpToolStripMenuItem.Enabled = true;
             this.undoToolStripMenuItem.Enabled = true;
+            this.colorSimilarityToolStripMenuItem.Enabled = true;
+        }
+
+        private void colorSimilarityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (((ImageController)_controller).GetImageFromModel() != null)
+            {
+                frmSimilarityThreshold form = new frmSimilarityThreshold();
+                DialogResult res = form.ShowDialog();
+
+                double similarityThreshold = 0.0;
+                if (res == DialogResult.OK)
+                {
+                    similarityThreshold = form.similarityThreshold;
+                    ColorDialog cd = new ColorDialog();
+                    cd.AllowFullOpen = true;
+                    cd.ShowHelp = false;
+                    cd.FullOpen = true;
+
+                    Color resultingColor;
+                    if (cd.ShowDialog() == DialogResult.OK)
+                    {
+                        resultingColor = cd.Color;
+                        Point start;
+                        frmSimilarityStartLocation formStart = new frmSimilarityStartLocation(((ImageController)_controller).GetImageFromModel());
+                        DialogResult resStart = formStart.ShowDialog();
+                        if (resStart == DialogResult.OK)
+                        {
+                            start = formStart.startLocation;
+
+                            if (!histogramView)
+                            {
+                                ((ImageController)_controller).SetViewImage(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
+                            }
+                            else
+                            {
+                                ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
+                            }
+
+                        }
+                    }
+                }
+            }
         }
     }
 }

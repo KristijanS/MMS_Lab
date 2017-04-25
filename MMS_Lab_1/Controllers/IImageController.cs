@@ -29,5 +29,6 @@ namespace MMS_Lab_1.Controllers
         void SaveDownsampledImage(String path, int choice);
         void SetViewDownsampledImage(Bitmap bmp);
         Bitmap LoadDownsampledImage(String path);
+        Bitmap ColorSimilarityFilter(Color color, Point startLocation, double similarityFactor);
     }
 }

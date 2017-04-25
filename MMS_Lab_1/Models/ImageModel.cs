@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 
 namespace MMS_Lab_1.Models
 {
@@ -1872,9 +1873,75 @@ namespace MMS_Lab_1.Models
 
             customImageData = data.ToArray();
         }
+
+        public Bitmap ColorSimilarityFilter(Color color, Point startLocation, double similarityFactor)
+        {
+            if (image != null)
+            {
+                lock (objLock)
+                {
+                    undoStack.Push(new Bitmap(image));
+                    redoStack.Clear();
+                    channelX = channelY = channelZ = null;
+                }
+                HashSet<Point> pointsToCompare = new HashSet<Point>();
+                HashSet<Point> pointsDone = new HashSet<Point>();
+                pointsToCompare.Add(startLocation);
+
+                Color Y = image.GetPixel(startLocation.X, startLocation.Y);
+                Color X = color;
+
+                Bitmap bmp = new Bitmap(image);
+
+                while (pointsToCompare.Count != 0)
+                {
+                    Point T = pointsToCompare.First();
+
+                    //up
+                    if (T.Y - 1 > 0 && !pointsDone.Contains(new Point(T.X, T.Y - 1)))
+                    {
+                        if (SimilarityFactor(Y, bmp.GetPixel(T.X, T.Y - 1)) <= similarityFactor)
+                            pointsToCompare.Add(new Point(T.X, T.Y - 1));
+                    }
+
+                    //down
+                    if (T.Y + 1 < bmp.Height && !pointsDone.Contains(new Point(T.X, T.Y + 1)))
+                    {
+                        if (SimilarityFactor(Y, bmp.GetPixel(T.X, T.Y + 1)) <= similarityFactor)
+                            pointsToCompare.Add(new Point(T.X, T.Y + 1));
+                    }
+
+                    //left
+                    if (T.X - 1 > 0 && !pointsDone.Contains(new Point(T.X - 1, T.Y)))
+                    {
+                        if (SimilarityFactor(Y, bmp.GetPixel(T.X - 1, T.Y)) <= similarityFactor)
+                            pointsToCompare.Add(new Point(T.X - 1, T.Y));
+                    }
+
+                    //right
+                    if (T.X + 1 < bmp.Width && !pointsDone.Contains(new Point(T.X + 1, T.Y)))
+                    {
+                        if (SimilarityFactor(Y, bmp.GetPixel(T.X + 1, T.Y)) <= similarityFactor)
+                            pointsToCompare.Add(new Point(T.X + 1, T.Y));
+                    }
+
+
+                    bmp.SetPixel(T.X, T.Y, X);
+                    pointsDone.Add(T);
+                    pointsToCompare.Remove(T);
+                }
+
+                image = bmp;
+                return image;
+            }
+            throw new Exception("Image is not set.");
+        }
+
+        private double SimilarityFactor(Color A, Color B)
+        {
+            return Math.Sqrt(Math.Pow((A.R - B.R), 2) + Math.Pow((A.G - B.G), 2) + Math.Pow((A.B - B.B), 2));
+        }
     }
-
-
 
     public struct FloatPoint
     {

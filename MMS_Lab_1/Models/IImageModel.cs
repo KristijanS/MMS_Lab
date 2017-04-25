@@ -31,5 +31,6 @@ namespace MMS_Lab_1.Models
         void SaveCustomImage(String path);
         Bitmap LoadCustomImage(string path);
         void PrepareDownsampledData(int choice);
+        Bitmap ColorSimilarityFilter(Color color, Point startLocation, double similarityFactor);
     }
 }

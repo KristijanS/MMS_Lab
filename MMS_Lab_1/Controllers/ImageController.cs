@@ -135,22 +135,34 @@ namespace MMS_Lab_1.Controllers
 
         public Bitmap GetViewImage()
         {
-            throw new NotImplementedException();
+            return _view.GetImage();
         }
 
         public Bitmap GetViewImageX()
         {
-            throw new NotImplementedException();
+            if (_view is AllChannelsView)
+            {
+                return ((AllChannelsView)_view).GetChannelX();
+            }
+            return null;
         }
 
         public Bitmap GetViewImageY()
         {
-            throw new NotImplementedException();
+            if (_view is AllChannelsView)
+            {
+                return ((AllChannelsView)_view).GetChannelY();
+            }
+            return null;
         }
 
         public Bitmap GetViewImageZ()
         {
-            throw new NotImplementedException();
+            if (_view is AllChannelsView)
+            {
+                return ((AllChannelsView)_view).GetChannelZ();
+            }
+            return null;
         }
 
         public void SaveDownsampledImage(String path, int choice)
@@ -174,6 +186,11 @@ namespace MMS_Lab_1.Controllers
             ((AllChannelsView)_view).SetChannelX(_model.DownsampleXY());
             ((AllChannelsView)_view).SetChannelY(_model.DownsampleXZ());
             ((AllChannelsView)_view).SetChannelZ(_model.DownsampleYZ());
+        }
+
+        public Bitmap ColorSimilarityFilter(Color color, Point startLocation, double similarityFactor)
+        {
+            return _model.ColorSimilarityFilter(color, startLocation, similarityFactor);
         }
     }
 }

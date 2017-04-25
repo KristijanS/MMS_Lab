@@ -98,6 +98,18 @@
     <Compile Include="frmColors.Designer.cs">
       <DependentUpon>frmColors.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSimilarityStartLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSimilarityStartLocation.Designer.cs">
+      <DependentUpon>frmSimilarityStartLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSimilarityThreshold.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSimilarityThreshold.Designer.cs">
+      <DependentUpon>frmSimilarityThreshold.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTimeWarp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmColors.resx">
       <DependentUpon>frmColors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSimilarityStartLocation.resx">
+      <DependentUpon>frmSimilarityStartLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSimilarityThreshold.resx">
+      <DependentUpon>frmSimilarityThreshold.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTimeWarp.resx">
       <DependentUpon>frmTimeWarp.cs</DependentUpon>
