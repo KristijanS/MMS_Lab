@@ -17,8 +17,16 @@ namespace MMS_Lab_1
         public frmSimilarityStartLocation(Bitmap bmp)
         {
             InitializeComponent();
+
+            panel1.AutoScroll = true;
+
+            Rectangle screen = Screen.PrimaryScreen.Bounds;
+            Size size = new Size(screen.Width, screen.Height);
+
             pictureBox1.Image = bmp;
-            this.Size = pictureBox1.Image.Size;
+            pictureBox1.Parent = panel1;
+
+            this.MaximumSize = size;
         }
 
         private void pictureBox1_MouseClick_1(object sender, MouseEventArgs e)
