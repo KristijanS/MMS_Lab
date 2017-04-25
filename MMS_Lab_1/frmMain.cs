@@ -658,16 +658,18 @@ namespace MMS_Lab_1
                         if (resStart == DialogResult.OK)
                         {
                             start = formStart.startLocation;
-
-                            if (!histogramView)
+                            Thread t = new Thread(() =>
                             {
-                                ((ImageController)_controller).SetViewImage(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
-                            }
-                            else
-                            {
-                                ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
-                            }
-
+                                if (!histogramView)
+                                {
+                                    ((ImageController)_controller).SetViewImage(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
+                                }
+                                else
+                                {
+                                    ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
+                                }
+                            });
+                            t.Start();
                         }
                     }
                 }
