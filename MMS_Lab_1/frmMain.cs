@@ -18,9 +18,17 @@ namespace MMS_Lab_1
         private bool allConvolutionsView;
         private bool audioView;
 
+        private delegate void DisableControls();
+        private delegate void EnableControls();
+
+        private DisableControls disableDelegate;
+        private EnableControls enableDelegate;
+
         public frmMain()
         {
             InitializeComponent();
+            disableDelegate = new DisableControls(DisableImageControls);
+            enableDelegate = new EnableControls(EnableImageControls);
             _controller = new ImageController();
             _view = new ImageOnlyView();
             _view.SetParentForm(this);
@@ -89,7 +97,7 @@ namespace MMS_Lab_1
                 ((ImageController)_controller).SetUnsafeMode(true);
                 imageOnlyView = true;
                 audioView = false;
-                EnableImageControls();
+                Invoke(enableDelegate);
                 this.imageOnlyToolStripMenuItem.Checked = true;
                 this.allChannelsToolStripMenuItem.Checked = false;
                 this.allChannelsHistogramsToolStripMenuItem.Checked = false;
@@ -222,6 +230,7 @@ namespace MMS_Lab_1
             {
                 Thread t = new Thread(() =>
                 {
+                    Invoke(disableDelegate);
                     if (!histogramView)
                     {
                         ((ImageController)_controller).SetViewImage(((ImageController)_controller).InvertImage());
@@ -230,6 +239,7 @@ namespace MMS_Lab_1
                     {
                         ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).InvertImage());
                     }
+                    Invoke(enableDelegate);
                 });
                 t.Start();
             }
@@ -250,6 +260,7 @@ namespace MMS_Lab_1
                 }
                 Thread t = new Thread(() =>
                 {
+                    Invoke(disableDelegate);
                     if (!histogramView)
                     {
                         ((ImageController)_controller).SetViewImage(((ImageController)_controller).ColorsFilter(r, g, b));
@@ -258,7 +269,7 @@ namespace MMS_Lab_1
                     {
                         ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).ColorsFilter(r, g, b));
                     }
-
+                    Invoke(enableDelegate);
                 });
                 t.Start();
             }
@@ -270,6 +281,7 @@ namespace MMS_Lab_1
             {
                 Thread t = new Thread(() =>
                 {
+                    Invoke(disableDelegate);
                     if (!histogramView)
                     {
                         ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter3x3());
@@ -278,7 +290,7 @@ namespace MMS_Lab_1
                     {
                         ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter3x3());
                     }
-
+                    Invoke(enableDelegate);
                 });
                 t.Start();
             }
@@ -290,6 +302,7 @@ namespace MMS_Lab_1
             {
                 Thread t = new Thread(() =>
                 {
+                    Invoke(disableDelegate);
                     if (!histogramView)
                     {
                         ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter5x5());
@@ -298,6 +311,7 @@ namespace MMS_Lab_1
                     {
                         ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter5x5());
                     }
+                    Invoke(enableDelegate);
                 });
                 t.Start();
             }
@@ -309,6 +323,7 @@ namespace MMS_Lab_1
             {
                 Thread t = new Thread(() =>
                 {
+                    Invoke(disableDelegate);
                     if (!histogramView)
                     {
                         ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter7x7());
@@ -317,7 +332,7 @@ namespace MMS_Lab_1
                     {
                         ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter7x7());
                     }
-
+                    Invoke(enableDelegate);
                 });
                 t.Start();
             }
@@ -338,9 +353,9 @@ namespace MMS_Lab_1
                 Bitmap bmp;
                 if ((bmp = ((ImageController)_controller).GetImageFromModel()) != null)
                 {
-
+                    Invoke(disableDelegate);
                     ((ImageController)_controller).SetViewAllConvolutionsMean(bmp);
-
+                    Invoke(enableDelegate);
                 }
                 this.imageOnlyToolStripMenuItem.Checked = false;
                 this.allChannelsHistogramsToolStripMenuItem.Checked = false;
@@ -362,9 +377,9 @@ namespace MMS_Lab_1
                 Bitmap bmp;
                 if ((bmp = ((ImageController)_controller).GetImageFromModel()) != null)
                 {
-
+                    Invoke(disableDelegate);
                     ((ImageController)_controller).SetViewHistograms(bmp);
-
+                    Invoke(enableDelegate);
                 }
                 this.imageOnlyToolStripMenuItem.Checked = false;
                 this.allChannelsHistogramsToolStripMenuItem.Checked = true;
@@ -386,6 +401,7 @@ namespace MMS_Lab_1
                 }
                 Thread t = new Thread(() =>
                 {
+                    Invoke(disableDelegate);
                     if (!histogramView)
                     {
                         ((ImageController)_controller).SetViewImage(((ImageController)_controller).EdgeDetectHomogenity(nThreshold));
@@ -394,7 +410,7 @@ namespace MMS_Lab_1
                     {
                         ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).EdgeDetectHomogenity(nThreshold));
                     }
-
+                    Invoke(enableDelegate);
                 });
                 t.Start();
             }
@@ -415,6 +431,7 @@ namespace MMS_Lab_1
                 }
                 Thread t = new Thread(() =>
                 {
+                    Invoke(disableDelegate);
                     if (!histogramView)
                     {
                         ((ImageController)_controller).SetViewImage(((ImageController)_controller).TimeWarp(factor, smoothing));
@@ -423,7 +440,7 @@ namespace MMS_Lab_1
                     {
                         ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).TimeWarp(factor, smoothing));
                     }
-
+                    Invoke(enableDelegate);
                 });
                 t.Start();
             }
@@ -505,6 +522,7 @@ namespace MMS_Lab_1
                 }
                 Thread t = new Thread(() =>
                 {
+                    Invoke(disableDelegate);
                     if (!histogramView)
                     {
                         ((ImageController)_controller).SetViewImage(((ImageController)_controller).HistogramAverages(grNo));
@@ -513,6 +531,7 @@ namespace MMS_Lab_1
                     {
                         ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).HistogramAverages(grNo));
                     }
+                    Invoke(enableDelegate);
                 });
                 t.Start();
             }
@@ -531,7 +550,9 @@ namespace MMS_Lab_1
                     imageOnlyView = false;
                     histogramView = false;
                     allConvolutionsView = false;
+                    Invoke(disableDelegate);
                     ((ImageController)_controller).SetViewDownsampledImage(((ImageController)_controller).GetImageFromModel());
+                    Invoke(enableDelegate);
                     this.imageOnlyToolStripMenuItem.Checked = false;
                     this.allChannelsHistogramsToolStripMenuItem.Checked = false;
                     this.allChannelsToolStripMenuItem.Checked = false;
@@ -559,7 +580,7 @@ namespace MMS_Lab_1
             _view = new AudioView();
             imageOnlyView = histogramView = allConvolutionsView = false;
             audioView = true;
-            DisableImageControls();
+            Invoke(disableDelegate);
             _view.SetParentForm(this);
             _view.SetVisibility(true);
             ((AudioController)_controller).AttachView(_view);
@@ -660,6 +681,7 @@ namespace MMS_Lab_1
                             start = formStart.startLocation;
                             Thread t = new Thread(() =>
                             {
+                                Invoke(disableDelegate);
                                 if (!histogramView)
                                 {
                                     ((ImageController)_controller).SetViewImage(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
@@ -668,6 +690,7 @@ namespace MMS_Lab_1
                                 {
                                     ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
                                 }
+                                Invoke(enableDelegate);
                             });
                             t.Start();
                         }

@@ -261,13 +261,14 @@ namespace MMS_Lab_1.Models
                 if (channelX == null)
                 {
                     channelX = new Bitmap(image);
-                    for (int i = 0; i < image.Width; i++)
+                    Bitmap bmp = new Bitmap(image);
+                    for (int i = 0; i < bmp.Width; i++)
                     {
-                        for (int j = 0; j < image.Height; j++)
+                        for (int j = 0; j < bmp.Height; j++)
                         {
                             lock (objLock)
                             {
-                                Color pixel = image.GetPixel(i, j);
+                                Color pixel = bmp.GetPixel(i, j);
                                 double x = 0, y = 0, z = 0;
                                 RGBToXYZ(pixel, out x, out y, out z);
                                 if (!histogramX.ContainsKey((int)x))
@@ -307,13 +308,14 @@ namespace MMS_Lab_1.Models
                 if (channelY == null)
                 {
                     channelY = new Bitmap(image);
-                    for (int i = 0; i < image.Width; i++)
+                    Bitmap bmp = new Bitmap(image);
+                    for (int i = 0; i < bmp.Width; i++)
                     {
-                        for (int j = 0; j < image.Height; j++)
+                        for (int j = 0; j < bmp.Height; j++)
                         {
                             lock (objLock)
                             {
-                                Color pixel = image.GetPixel(i, j);
+                                Color pixel = bmp.GetPixel(i, j);
                                 double x = 0, y = 0, z = 0;
                                 RGBToXYZ(pixel, out x, out y, out z);
                                 if (!histogramY.ContainsKey((int)y))
@@ -352,13 +354,14 @@ namespace MMS_Lab_1.Models
                 if (channelZ == null)
                 {
                     channelZ = new Bitmap(image);
-                    for (int i = 0; i < image.Width; i++)
+                    Bitmap bmp = new Bitmap(image);
+                    for (int i = 0; i < bmp.Width; i++)
                     {
-                        for (int j = 0; j < image.Height; j++)
+                        for (int j = 0; j < bmp.Height; j++)
                         {
                             lock (objLock)
                             {
-                                Color pixel = image.GetPixel(i, j);
+                                Color pixel = bmp.GetPixel(i, j);
                                 double x = 0, y = 0, z = 0;
                                 RGBToXYZ(pixel, out x, out y, out z);
                                 if (!histogramZ.ContainsKey((int)z))
