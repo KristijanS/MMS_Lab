@@ -88,6 +88,10 @@ namespace MMS_Lab_1
         {
             if (audioView)
             {
+                if(_controller != null && _controller is AudioController)
+                {
+                    ((AudioController)_controller).Stop();
+                }
                 _controller = new ImageController();
                 _view.SetVisibility(false);
                 _view = new ImageOnlyView();
@@ -136,6 +140,10 @@ namespace MMS_Lab_1
 
         private void loadCustomImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (_controller != null && _controller is AudioController)
+            {
+                ((AudioController)_controller).Stop();
+            }
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Compressed Image File(*.cif) | *.cif";
             DialogResult res = ofd.ShowDialog();
