@@ -7,8 +7,8 @@
     <ProjectGuid>{566B43D5-0D70-4900-B797-458E76CC31FA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MMS_Lab_1</RootNamespace>
-    <AssemblyName>MMS_Lab_1</AssemblyName>
+    <RootNamespace>MMS</RootNamespace>
+    <AssemblyName>MMS</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,6 +32,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>keyboard_m_icon_84094_Ktf_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="INIFileParser, Version=2.4.0.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
@@ -168,6 +172,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Config.ini" />
+    <None Include="UML Diagram %28Classes%29.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -193,6 +199,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Screen Shot 2014-05-29 at 10.46.57 AM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="keyboard_m_icon_84094_Ktf_icon.ico" />
+    <None Include="Resources\Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

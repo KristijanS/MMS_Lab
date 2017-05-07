@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,11 +55,11 @@
             this.edgeDetectHomogenityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timeWarpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramAveragesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorSimilarityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unsafeOperationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.offToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.colorSimilarityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -273,6 +274,13 @@
             this.histogramAveragesToolStripMenuItem.Text = "Histogram Averages";
             this.histogramAveragesToolStripMenuItem.Click += new System.EventHandler(this.histogramAveragesToolStripMenuItem_Click);
             // 
+            // colorSimilarityToolStripMenuItem
+            // 
+            this.colorSimilarityToolStripMenuItem.Name = "colorSimilarityToolStripMenuItem";
+            this.colorSimilarityToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.colorSimilarityToolStripMenuItem.Text = "Color Similarity";
+            this.colorSimilarityToolStripMenuItem.Click += new System.EventHandler(this.colorSimilarityToolStripMenuItem_Click);
+            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -304,13 +312,6 @@
             this.offToolStripMenuItem.Text = "Off";
             this.offToolStripMenuItem.Click += new System.EventHandler(this.offToolStripMenuItem_Click);
             // 
-            // colorSimilarityToolStripMenuItem
-            // 
-            this.colorSimilarityToolStripMenuItem.Name = "colorSimilarityToolStripMenuItem";
-            this.colorSimilarityToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.colorSimilarityToolStripMenuItem.Text = "Color Similarity";
-            this.colorSimilarityToolStripMenuItem.Click += new System.EventHandler(this.colorSimilarityToolStripMenuItem_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,7 +322,10 @@
             this.ClientSize = new System.Drawing.Size(484, 261);
             this.ControlBox = false;
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMain";
             this.Text = "MMS";
             this.menuStrip1.ResumeLayout(false);

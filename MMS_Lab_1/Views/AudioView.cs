@@ -30,8 +30,8 @@ namespace MMS_Lab_1.Views
 
             panel.AutoSize = true;
 
-            playButton.Image = new Bitmap(Properties.Resources.Play);
-            stopButton.Image = new Bitmap(Properties.Resources.Button_Stop);
+            playButton.Image = new Bitmap(MMS.Properties.Resources.Play);
+            stopButton.Image = new Bitmap(MMS.Properties.Resources.Button_Stop);
             filterButton.Text = "Apply Filter";
 
             playButton.Width = playButton.Image.Width;

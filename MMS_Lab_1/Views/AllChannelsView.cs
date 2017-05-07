@@ -24,7 +24,7 @@ namespace MMS_Lab_1.Views
             channel_G = new PictureBox();
             channel_B = new PictureBox();
 
-            image.Image = channel_R.Image = channel_G.Image = channel_B.Image = new Bitmap(Properties.Resources.PlaceholderImg);
+            image.Image = channel_R.Image = channel_G.Image = channel_B.Image = new Bitmap(MMS.Properties.Resources.PlaceholderImg);
 
             channelsPanel.Controls.Add(image, 0, 0);
             channelsPanel.Controls.Add(channel_R, 0, 1);
