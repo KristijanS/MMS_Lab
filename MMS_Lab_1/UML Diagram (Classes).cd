@@ -71,7 +71,7 @@
       </Delegate>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>DZyQOCKoESABKQogACXEgABTVIoAICEEAGgwDHQAAHA=</HashCode>
+      <HashCode>DZyQOCKoESABKQogACXEgABTVIoAICEEAGwwDHQAAHA=</HashCode>
       <FileName>frmMain.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -97,7 +97,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MMS_Lab_1.Histogram">
-    <Position X="9.75" Y="11.75" Width="8.75" />
+    <Position X="9.75" Y="11.5" Width="8.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAAAAA=</HashCode>
       <FileName>Histogram.cs</FileName>
@@ -160,9 +160,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MMS.Properties.Resources">
-    <Position X="9.75" Y="13.25" Width="3.25" />
+    <Position X="9.25" Y="13" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAABEAAAAQAAAAIAgAAAAAAAAIA=</HashCode>
+      <HashCode>AAAAAAAAAgAAAAAEAAABEAAAAQAAAAIAgAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="MMS_Lab_1.Views.AllChannelsView" BaseTypeListCollapsed="true">
@@ -190,11 +190,11 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="System.Windows.Forms.Form" Collapsed="true">
-    <Position X="15.25" Y="13.25" Width="1.5" />
+    <Position X="13" Y="13" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Struct Name="MMS_Lab_1.Models.FloatPoint">
-    <Position X="13.25" Y="13.25" Width="1.5" />
+    <Position X="17" Y="13" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
       <FileName>Models\ImageModel.cs</FileName>

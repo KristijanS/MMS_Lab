@@ -17,6 +17,7 @@ namespace MMS_Lab_1
         private bool histogramView;
         private bool allConvolutionsView;
         private bool audioView;
+        private bool downsampleView;
 
         private delegate void DisableControls();
         private delegate void EnableControls();
@@ -88,7 +89,7 @@ namespace MMS_Lab_1
         {
             if (audioView)
             {
-                if(_controller != null && _controller is AudioController)
+                if (_controller != null && _controller is AudioController)
                 {
                     ((AudioController)_controller).Stop();
                 }
@@ -194,6 +195,7 @@ namespace MMS_Lab_1
                 imageOnlyView = true;
                 histogramView = false;
                 allConvolutionsView = false;
+                downsampleView = false;
                 Bitmap bmp;
                 if ((bmp = ((ImageController)_controller).GetImageFromModel()) != null)
                 {
@@ -210,7 +212,7 @@ namespace MMS_Lab_1
 
         private void allChannelsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (imageOnlyView || histogramView)
+            if (imageOnlyView || histogramView || downsampleView)
             {
                 _view.SetVisibility(false);
                 _view = new AllChannelsView();
@@ -219,6 +221,7 @@ namespace MMS_Lab_1
                 imageOnlyView = false;
                 histogramView = false;
                 allConvolutionsView = false;
+                downsampleView = false;
                 Bitmap bmp;
                 if ((bmp = ((ImageController)_controller).GetImageFromModel()) != null)
                 {
@@ -236,20 +239,18 @@ namespace MMS_Lab_1
         {
             if (((ImageController)_controller).GetImageFromModel() != null)
             {
-                Thread t = new Thread(() =>
+
+                Invoke(disableDelegate);
+                if (!histogramView)
                 {
-                    Invoke(disableDelegate);
-                    if (!histogramView)
-                    {
-                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).InvertImage());
-                    }
-                    else
-                    {
-                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).InvertImage());
-                    }
-                    Invoke(enableDelegate);
-                });
-                t.Start();
+                    ((ImageController)_controller).SetViewImage(((ImageController)_controller).InvertImage());
+                }
+                else
+                {
+                    ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).InvertImage());
+                }
+                Invoke(enableDelegate);
+
             }
         }
 
@@ -266,20 +267,18 @@ namespace MMS_Lab_1
                     g = form.green;
                     b = form.blue;
                 }
-                Thread t = new Thread(() =>
+
+                Invoke(disableDelegate);
+                if (!histogramView)
                 {
-                    Invoke(disableDelegate);
-                    if (!histogramView)
-                    {
-                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).ColorsFilter(r, g, b));
-                    }
-                    else
-                    {
-                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).ColorsFilter(r, g, b));
-                    }
-                    Invoke(enableDelegate);
-                });
-                t.Start();
+                    ((ImageController)_controller).SetViewImage(((ImageController)_controller).ColorsFilter(r, g, b));
+                }
+                else
+                {
+                    ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).ColorsFilter(r, g, b));
+                }
+                Invoke(enableDelegate);
+
             }
         }
 
@@ -287,20 +286,19 @@ namespace MMS_Lab_1
         {
             if (((ImageController)_controller).GetImageFromModel() != null)
             {
-                Thread t = new Thread(() =>
+
+
+                Invoke(disableDelegate);
+                if (!histogramView)
                 {
-                    Invoke(disableDelegate);
-                    if (!histogramView)
-                    {
-                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter3x3());
-                    }
-                    else
-                    {
-                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter3x3());
-                    }
-                    Invoke(enableDelegate);
-                });
-                t.Start();
+                    ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter3x3());
+                }
+                else
+                {
+                    ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter3x3());
+                }
+                Invoke(enableDelegate);
+
             }
         }
 
@@ -308,20 +306,19 @@ namespace MMS_Lab_1
         {
             if (((ImageController)_controller).GetImageFromModel() != null)
             {
-                Thread t = new Thread(() =>
+
+
+                Invoke(disableDelegate);
+                if (!histogramView)
                 {
-                    Invoke(disableDelegate);
-                    if (!histogramView)
-                    {
-                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter5x5());
-                    }
-                    else
-                    {
-                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter5x5());
-                    }
-                    Invoke(enableDelegate);
-                });
-                t.Start();
+                    ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter5x5());
+                }
+                else
+                {
+                    ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter5x5());
+                }
+                Invoke(enableDelegate);
+
             }
         }
 
@@ -329,26 +326,25 @@ namespace MMS_Lab_1
         {
             if (((ImageController)_controller).GetImageFromModel() != null)
             {
-                Thread t = new Thread(() =>
+
+
+                Invoke(disableDelegate);
+                if (!histogramView)
                 {
-                    Invoke(disableDelegate);
-                    if (!histogramView)
-                    {
-                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter7x7());
-                    }
-                    else
-                    {
-                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter7x7());
-                    }
-                    Invoke(enableDelegate);
-                });
-                t.Start();
+                    ((ImageController)_controller).SetViewImage(((ImageController)_controller).MeanFilter7x7());
+                }
+                else
+                {
+                    ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).MeanFilter7x7());
+                }
+                Invoke(enableDelegate);
+
             }
         }
 
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (imageOnlyView || histogramView)
+            if (imageOnlyView || histogramView || downsampleView)
             {
                 _view.SetVisibility(false);
                 _view = new AllChannelsView();
@@ -357,6 +353,7 @@ namespace MMS_Lab_1
                 imageOnlyView = false;
                 histogramView = false;
                 allConvolutionsView = true;
+                downsampleView = false;
 
                 Bitmap bmp;
                 if ((bmp = ((ImageController)_controller).GetImageFromModel()) != null)
@@ -373,7 +370,7 @@ namespace MMS_Lab_1
 
         private void allChannelsHistogramsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (imageOnlyView || !histogramView)
+            if (imageOnlyView || !histogramView || downsampleView)
             {
                 _view.SetVisibility(false);
                 _view = new AllChannelsView();
@@ -382,6 +379,7 @@ namespace MMS_Lab_1
                 imageOnlyView = false;
                 histogramView = true;
                 allConvolutionsView = false;
+                downsampleView = false;
                 Bitmap bmp;
                 if ((bmp = ((ImageController)_controller).GetImageFromModel()) != null)
                 {
@@ -407,20 +405,19 @@ namespace MMS_Lab_1
                 {
                     nThreshold = form.Threshold;
                 }
-                Thread t = new Thread(() =>
+
+
+                Invoke(disableDelegate);
+                if (!histogramView)
                 {
-                    Invoke(disableDelegate);
-                    if (!histogramView)
-                    {
-                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).EdgeDetectHomogenity(nThreshold));
-                    }
-                    else
-                    {
-                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).EdgeDetectHomogenity(nThreshold));
-                    }
-                    Invoke(enableDelegate);
-                });
-                t.Start();
+                    ((ImageController)_controller).SetViewImage(((ImageController)_controller).EdgeDetectHomogenity(nThreshold));
+                }
+                else
+                {
+                    ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).EdgeDetectHomogenity(nThreshold));
+                }
+                Invoke(enableDelegate);
+
             }
         }
 
@@ -437,20 +434,19 @@ namespace MMS_Lab_1
                     factor = form.factor;
                     smoothing = form.smoothing;
                 }
-                Thread t = new Thread(() =>
+
+
+                Invoke(disableDelegate);
+                if (!histogramView)
                 {
-                    Invoke(disableDelegate);
-                    if (!histogramView)
-                    {
-                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).TimeWarp(factor, smoothing));
-                    }
-                    else
-                    {
-                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).TimeWarp(factor, smoothing));
-                    }
-                    Invoke(enableDelegate);
-                });
-                t.Start();
+                    ((ImageController)_controller).SetViewImage(((ImageController)_controller).TimeWarp(factor, smoothing));
+                }
+                else
+                {
+                    ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).TimeWarp(factor, smoothing));
+                }
+                Invoke(enableDelegate);
+
             }
         }
 
@@ -458,30 +454,29 @@ namespace MMS_Lab_1
         {
             if (((ImageController)_controller).GetImageFromModel() != null)
             {
-                Thread t = new Thread(() =>
+
+
+                if (allConvolutionsView)
                 {
-                    if (allConvolutionsView)
+                    ((ImageController)_controller).Undo();
+                    ((ImageController)_controller).Undo();
+                    ((ImageController)_controller).Undo();
+                    ((ImageController)_controller).Undo();
+                    ((ImageController)_controller).SetViewAllConvolutionsMean(((ImageController)_controller).GetImageFromModel());
+                }
+                else
+                {
+                    ((ImageController)_controller).Undo();
+                    if (!histogramView)
                     {
-                        ((ImageController)((ImageController)_controller)).Undo();
-                        ((ImageController)((ImageController)_controller)).Undo();
-                        ((ImageController)((ImageController)_controller)).Undo();
-                        ((ImageController)((ImageController)_controller)).Undo();
-                        ((ImageController)_controller).SetViewAllConvolutionsMean(((ImageController)_controller).GetImageFromModel());
+                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).GetImageFromModel());
                     }
                     else
                     {
-                        ((ImageController)((ImageController)_controller)).Undo();
-                        if (!histogramView)
-                        {
-                            ((ImageController)_controller).SetViewImage(((ImageController)_controller).GetImageFromModel());
-                        }
-                        else
-                        {
-                            ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).GetImageFromModel());
-                        }
+                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).GetImageFromModel());
                     }
-                });
-                t.Start();
+                }
+
             }
         }
 
@@ -489,31 +484,30 @@ namespace MMS_Lab_1
         {
             if (((ImageController)_controller).GetImageFromModel() != null)
             {
-                Thread t = new Thread(() =>
+
+
+                if (allConvolutionsView)
                 {
-                    if (allConvolutionsView)
+                    ((ImageController)_controller).Redo();
+                    ((ImageController)_controller).Redo();
+                    ((ImageController)_controller).Redo();
+                    ((ImageController)_controller).Redo();
+                    ((ImageController)_controller).SetViewAllConvolutionsMean(((ImageController)_controller).GetImageFromModel());
+                }
+                else
+                {
+                    ((ImageController)_controller).Redo();
+                    if (!histogramView)
                     {
-                        ((ImageController)((ImageController)_controller)).Redo();
-                        ((ImageController)((ImageController)_controller)).Redo();
-                        ((ImageController)((ImageController)_controller)).Redo();
-                        ((ImageController)((ImageController)_controller)).Redo();
-                        ((ImageController)_controller).SetViewAllConvolutionsMean(((ImageController)_controller).GetImageFromModel());
+                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).GetImageFromModel());
                     }
                     else
                     {
-                        ((ImageController)((ImageController)_controller)).Redo();
-                        if (!histogramView)
-                        {
-                            ((ImageController)_controller).SetViewImage(((ImageController)_controller).GetImageFromModel());
-                        }
-                        else
-                        {
-                            ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).GetImageFromModel());
-                        }
+                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).GetImageFromModel());
                     }
+                }
 
-                });
-                t.Start();
+
             }
         }
 
@@ -528,20 +522,19 @@ namespace MMS_Lab_1
                 {
                     grNo = form.groupNumber;
                 }
-                Thread t = new Thread(() =>
+
+
+                Invoke(disableDelegate);
+                if (!histogramView)
                 {
-                    Invoke(disableDelegate);
-                    if (!histogramView)
-                    {
-                        ((ImageController)_controller).SetViewImage(((ImageController)_controller).HistogramAverages(grNo));
-                    }
-                    else
-                    {
-                        ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).HistogramAverages(grNo));
-                    }
-                    Invoke(enableDelegate);
-                });
-                t.Start();
+                    ((ImageController)_controller).SetViewImage(((ImageController)_controller).HistogramAverages(grNo));
+                }
+                else
+                {
+                    ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).HistogramAverages(grNo));
+                }
+                Invoke(enableDelegate);
+
             }
         }
 
@@ -549,7 +542,7 @@ namespace MMS_Lab_1
         {
             if (((ImageController)_controller).GetImageFromModel() != null)
             {
-                if (imageOnlyView || histogramView)
+                if (!downsampleView)
                 {
                     _view.SetVisibility(false);
                     _view = new AllChannelsView();
@@ -558,6 +551,7 @@ namespace MMS_Lab_1
                     imageOnlyView = false;
                     histogramView = false;
                     allConvolutionsView = false;
+                    downsampleView = true;
                     Invoke(disableDelegate);
                     ((ImageController)_controller).SetViewDownsampledImage(((ImageController)_controller).GetImageFromModel());
                     Invoke(enableDelegate);
@@ -687,20 +681,19 @@ namespace MMS_Lab_1
                         if (resStart == DialogResult.OK)
                         {
                             start = formStart.startLocation;
-                            Thread t = new Thread(() =>
+
+
+                            Invoke(disableDelegate);
+                            if (!histogramView)
                             {
-                                Invoke(disableDelegate);
-                                if (!histogramView)
-                                {
-                                    ((ImageController)_controller).SetViewImage(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
-                                }
-                                else
-                                {
-                                    ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
-                                }
-                                Invoke(enableDelegate);
-                            });
-                            t.Start();
+                                ((ImageController)_controller).SetViewImage(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
+                            }
+                            else
+                            {
+                                ((ImageController)_controller).SetViewHistograms(((ImageController)_controller).ColorSimilarityFilter(resultingColor, start, similarityThreshold));
+                            }
+                            Invoke(enableDelegate);
+
                         }
                     }
                 }
