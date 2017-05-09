@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="MMS_Lab_1.frmAudioFilter">
+    <Position X="7" Y="14.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAACoAABAAAACAAAgCAAAIAAwCAEAAAAQAAAA=</HashCode>
+      <FileName>frmAudioFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.frmChooseDownsampledImage">
+    <Position X="14" Y="9.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAICAAAAEAAAQAAAAI=</HashCode>
+      <FileName>frmChooseDownsampledImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.frmColors">
+    <Position X="6" Y="5.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAACAAABAAIAKAAAACAAAIAAACAEAAAQQAAgA=</HashCode>
+      <FileName>frmColors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.frmEdgeDetectFactor">
+    <Position X="7" Y="10.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAIAAAAAEAgAAAAAAA=</HashCode>
+      <FileName>frmEdgeDetectFactor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.frmHistogramAverages">
+    <Position X="10.5" Y="10.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAKAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>frmHistogramAverages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.frmMain">
+    <Position X="0.5" Y="5.75" Width="5.25" />
+    <NestedTypes>
+      <Delegate Name="MMS_Lab_1.frmMain.DisableControls" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>frmMain.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="MMS_Lab_1.frmMain.EnableControls" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>frmMain.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>DZyQOCKoESABKQogACXEgABTVIoAICEEAGwwDHQAAHA=</HashCode>
+      <FileName>frmMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.frmSimilarityStartLocation">
+    <Position X="13" Y="5.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAQAACIAAACAAAAAAAAAAAAAQBAAAA=</HashCode>
+      <FileName>frmSimilarityStartLocation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.frmSimilarityThreshold">
+    <Position X="14" Y="13.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAACACAAAACAAAIAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>frmSimilarityThreshold.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.frmTimeWarp">
+    <Position X="9.5" Y="5.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAQBAAAACAAAACAAAIAAAAAEQAAAEAAAA=</HashCode>
+      <FileName>frmTimeWarp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.Views.AllChannelsView" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAgAAAAQIAAABABIAAAAEQEAAAAAAAQGEAAAAAAAA=</HashCode>
+      <FileName>Views\AllChannelsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.21" />
+  </Class>
+  <Class Name="MMS_Lab_1.Views.AudioView" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAABAAQBBQAAAAAAAAAIAQAEAAQAAAAA=</HashCode>
+      <FileName>Views\AudioView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MMS_Lab_1.Views.ImageOnlyView" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAEQEAAAAAAAQAEAAAAIAAA=</HashCode>
+      <FileName>Views\ImageOnlyView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Windows.Forms.Form" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="MMS_Lab_1.Views.IChannelView">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAIAAAAABIAAAAAAAAAAAAAAAGAAAAAAAAA=</HashCode>
+      <FileName>Views\IChannelView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MMS_Lab_1.Views.IImageView">
+    <Position X="3.5" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\IImageView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MMS_Lab_1.Views.IView">
+    <Position X="3.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAEAAAAAAAA=</HashCode>
+      <FileName>Views\IView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

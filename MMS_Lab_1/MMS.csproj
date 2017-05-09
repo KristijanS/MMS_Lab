@@ -173,6 +173,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Config.ini" />
+    <None Include="UML Diagram %28Classes%29 - Controller and Model.cd" />
+    <None Include="UML Diagram %28Classes%29 - View.cd" />
     <None Include="UML Diagram %28Classes%29.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

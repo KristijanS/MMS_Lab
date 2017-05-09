@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="MMS_Lab_1.Config">
+    <Position X="14.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Config.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.ConvolutionMatrix">
+    <Position X="16" Y="9" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAEUAAAAAAAA=</HashCode>
+      <FileName>ConvolutionMatrix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.CustomStack&lt;T&gt;">
+    <Position X="9.75" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAQCAACQAIAAAAAAAABACAA=</HashCode>
+      <FileName>CustomStack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.Histogram">
+    <Position X="6.75" Y="9.75" Width="8.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAAAAA=</HashCode>
+      <FileName>Histogram.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.ShannonFano">
+    <Position X="6.75" Y="6" Width="5.75" />
+    <NestedTypes>
+      <Class Name="MMS_Lab_1.ShannonFano.BitStream" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ShannonFano.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Struct Name="MMS_Lab_1.ShannonFano.Symbol" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ShannonFano.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="MMS_Lab_1.ShannonFano.TreeNode" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ShannonFano.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAABAAAAYAAICgAAAgQAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>ShannonFano.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MMS_Lab_1.Controllers.AudioController" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="8" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAQAAAAgAAQAAAAAAAAAAAoCAAAAAIAAA=</HashCode>
+      <FileName>Controllers\AudioController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MMS_Lab_1.Controllers.ImageController" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="12" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>gCQAkKIAAQIsBAAAAgAABAAhBAEgAIAAACBFIAIICAA=</HashCode>
+      <FileName>Controllers\ImageController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MMS_Lab_1.Models.AudioModel" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="8" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAEAAAAQAAAAAAAQAAAAAAAAAABoAAAAAAAAAA=</HashCode>
+      <FileName>Models\AudioModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MMS_Lab_1.Models.ImageModel" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="12" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>zgACOAAQIUIABKIBRIIAABETECEgAIQAATAVIAEgCjM=</HashCode>
+      <FileName>Models\ImageModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="MMS_Lab_1.Models.FloatPoint">
+    <Position X="12.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Models\ImageModel.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="MMS_Lab_1.IUndoRedo">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IUndoRedo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MMS_Lab_1.Controllers.IAudioController">
+    <Position X="6.5" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAQAAAAAAAQAAAAAAAAAAAoAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\IAudioController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MMS_Lab_1.Controllers.IController">
+    <Position X="4" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Controllers\IController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MMS_Lab_1.Controllers.IImageController">
+    <Position X="0.5" Y="2" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>gCQAkKIAAQIsAAAAAAAAAAAgBAEgAIAAAABFIAIACAA=</HashCode>
+      <FileName>Controllers\IImageController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MMS_Lab_1.Models.IAudioModel">
+    <Position X="8.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAQAAAAAAAQAAAAAAAAAAAoAAAAAAAAAA=</HashCode>
+      <FileName>Models\IAudioModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MMS_Lab_1.Models.IImageModel">
+    <Position X="13" Y="0.5" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>wAAAAAAAAUIAAIIABIIAABEQACEAAIAAASAFIAAACDE=</HashCode>
+      <FileName>Models\IImageModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
